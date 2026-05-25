@@ -13,7 +13,10 @@ class BaseLang():
     def load_parser(self):
         if self._PARSER is None:
             import spacy
-            self._PARSER = spacy.load(self.lang)
+            if self.lang == "en":
+                self._PARSER = spacy.load("en_core_web_sm")
+            else:
+                self._PARSER = spacy.load(self.lang)
         return self._PARSER
 
     def tokenize(self, text):
